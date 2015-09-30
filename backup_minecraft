@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.minescripts
 
 # In order to ensure that we get a good, self-consistent backup, we put the
 # Minecraft server into read-only mode while we copy the data files.  Players

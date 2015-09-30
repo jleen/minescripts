@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.minescripts
 
 STARTUP_WAIT_SECS=30
 MINECRAFT_JAR=$MINECRAFT_ROOT/minecraft_server.jar
