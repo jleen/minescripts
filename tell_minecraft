@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if ! screen -ls | grep -q minecraft; then
+    >&2 echo "Minecraft isn't running!"
+    exit 1
+fi
+
+screen -d -R minecraft -X stuff "$1\n"

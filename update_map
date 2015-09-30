@@ -1,0 +1,3 @@
+#!/bin/sh
+
+overviewer.py --config=$MINECRAFT_ROOT/OverviewerConfig
