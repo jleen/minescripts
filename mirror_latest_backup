@@ -1,0 +1,13 @@
+#!/bin/bash
+source $HOME/.minescripts
+
+if screen -ls | grep -q minecraft; then
+    >&2 echo "Minecraft is running so we shouldn't clobber the world!"
+    exit 1
+fi
+
+unzip -d $MINECRAFT_ROOT/ziptmp `ls $MINECRAFT_BACKUP_PREFIX* | tail -1` \
+    $MINECRAFT_BACKUP_ROOT/world/'*'
+rm -vrf $MINECRAFT_ROOT/world
+mv -v $MINECRAFT_ROOT/ziptmp/$MINECRAFT_BACKUP_ROOT/world $MINECRAFT_ROOT/world
+rm -vrf $MINECRAFT_ROOT/ziptmp
