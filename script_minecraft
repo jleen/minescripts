@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while read foo; do
+  echo "$foo"
+  tell_minecraft "$foo"
+done
