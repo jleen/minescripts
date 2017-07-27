@@ -1,5 +1,4 @@
 #!/bin/bash
-source $HOME/.minescripts
 
 # In order to ensure that we get a good, self-consistent backup, we put the
 # Minecraft server into read-only mode while we copy the data files.  Players
@@ -11,11 +10,14 @@ source $HOME/.minescripts
 # WHERE'S YOUR GOD NOW?
 
 
-TELL_MINECRAFT=`dirname ${BASH_ARGV[0]}`/tell_minecraft
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$SCRIPT_DIR"/config
+TELL_MINECRAFT=$SCRIPT_DIR/tell_minecraft
 
 $TELL_MINECRAFT "say It's backup time!"
 $TELL_MINECRAFT 'save-off'
 $TELL_MINECRAFT 'save-all'
-zip -r $MINECRAFT_BACKUP_PREFIX`date +\%F`.zip $MINECRAFT_ROOT
+zip -r "$BACKUP_DIR"/MinecraftBackup`date +\%F`.zip \
+       $MINECRAFT_SERVER_DIR
 $TELL_MINECRAFT 'save-on'
 $TELL_MINECRAFT 'say Backup complete!'

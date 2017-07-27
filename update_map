@@ -1,3 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 
-overviewer.py --config=$MINECRAFT_ROOT/OverviewerConfig
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$SCRIPT_DIR"/config
+overviewer.py --config="$MINECRAFT_SERVER_DIR"/overviewer.config

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$SCRIPT_DIR"/config
+
+cd "$MINECRAFT_SERVER_DIR"
+curl -O `curl -s https://minecraft.net/en/download/server \
+    | grep minecraft_server | grep Download \
+    | sed -s 's/.*\(https.*jar\)".*/\1/'`

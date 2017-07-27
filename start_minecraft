@@ -1,8 +1,12 @@
 #!/bin/bash
-source $HOME/.minescripts
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$SCRIPT_DIR"/config
 
 STARTUP_WAIT_SECS=30
-MINECRAFT_JAR=$MINECRAFT_ROOT/minecraft_server.jar
+MINECRAFT_JAR=$( \
+	ls -t "$MINECRAFT_SERVER_DIR"/minecraft_server.*.jar \
+        | head -1 )
 JAVA_FLAGS='-Xmx3072M -Xms3072M'
 
 QUIET=
@@ -23,3 +27,4 @@ screen -d -m -c /dev/null -S minecraft \
 #sleep $STARTUP_WAIT_SECS  # Wait for the server to finish starting up.
 #tell_minecraft 'gamerule mobGriefing false'
 echo Starting Minecraft server in a screen session!
+echo Using $MINECRAFT_JAR
