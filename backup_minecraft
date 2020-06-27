@@ -17,7 +17,7 @@ TELL_MINECRAFT=$SCRIPT_DIR/tell_minecraft
 $TELL_MINECRAFT "say It's backup time!"
 $TELL_MINECRAFT 'save-off'
 $TELL_MINECRAFT 'save-all'
-zip -r "$BACKUP_DIR"/MinecraftBackup`date +\%F`.zip \
+zip -r "$MINECRAFT_BACKUP_DIR"/minecraft-backup-`date +\%F`.zip \
        $MINECRAFT_SERVER_DIR
 $TELL_MINECRAFT 'save-on'
 $TELL_MINECRAFT 'say Backup complete!'

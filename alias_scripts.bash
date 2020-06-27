@@ -1,4 +1,9 @@
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ `ps -p $$ --no-headers -o cmd` == *zsh* ]]; then
+  SCRIPT_DIR="${0:h}"
+else
+  SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+fi
+
 source "$SCRIPT_DIR"/config
 
 alias zu="sudo -u $MINECRAFT_USER bash"

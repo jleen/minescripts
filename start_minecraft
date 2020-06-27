@@ -21,9 +21,9 @@ if screen -ls | grep -q minecraft; then
     fi
 fi
 
-cd `dirname $MINECRAFT_JAR`
+cd $MINECRAFT_DATA_DIR
 screen -d -m -c /dev/null -S minecraft \
-   java $JAVA_FLAGS -jar `basename $MINECRAFT_JAR` nogui
+   java $JAVA_FLAGS -jar $MINECRAFT_JAR nogui
 #sleep $STARTUP_WAIT_SECS  # Wait for the server to finish starting up.
 #tell_minecraft 'gamerule mobGriefing false'
 echo Starting Minecraft server in a screen session!
