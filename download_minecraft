@@ -3,7 +3,13 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$SCRIPT_DIR"/config
 
+download_link=`curl -s https://www.minecraft.net/en-us/download/server \
+               | grep server.jar`
+echo $download_link
+download_url=`echo $download_link \
+              | sed -s 's/.*\(https.*jar\)".*/\1/'`
+download_filename=`echo $download_link \
+                   | sed -s 's/.*\(minecraft_server.*jar\).*/\1/'`
+
 cd "$MINECRAFT_SERVER_DIR"
-curl -O `curl -s https://minecraft.net/en/download/server \
-    | grep minecraft_server | grep Download \
-    | sed -s 's/.*\(https.*jar\)".*/\1/'`
+curl -o "$download_filename" "$download_url"
