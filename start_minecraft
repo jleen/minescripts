@@ -22,9 +22,13 @@ if screen -ls | grep -q minecraft; then
 fi
 
 cd $MINECRAFT_DATA_DIR
-screen -d -m -c /dev/null -S minecraft \
-   java $JAVA_FLAGS -jar $MINECRAFT_JAR nogui
-#sleep $STARTUP_WAIT_SECS  # Wait for the server to finish starting up.
-#tell_minecraft 'gamerule mobGriefing false'
-echo Starting Minecraft server in a screen session!
-echo Using $MINECRAFT_JAR
+if [[ $1 == noscreen ]]; then
+    java $JAVA_FLAGS -jar $MINECRAFT_JAR nogui
+else
+    screen -d -m -c /dev/null -S minecraft \
+       java $JAVA_FLAGS -jar $MINECRAFT_JAR nogui
+    #sleep $STARTUP_WAIT_SECS  # Wait for the server to finish starting up.
+    #tell_minecraft 'gamerule mobGriefing false'
+    echo Starting Minecraft server in a screen session!
+    echo Using $MINECRAFT_JAR
+fi
