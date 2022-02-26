@@ -19,6 +19,8 @@ $TELL_MINECRAFT 'save-off'
 $TELL_MINECRAFT 'save-all'
 sleep 10  # HACK: Wait until (we think) save-all is complete.
 zip -r "$MINECRAFT_BACKUP_DIR"/minecraft-backup-`date +\%F`.zip \
-       $MINECRAFT_DATA_DIR
+       $MINECRAFT_DATA_DIR \
+       --exclude "$MINECRAFT_DATA_DIR/versions/*" \
+                 "$MINECRAFT_DATA_DIR/libraries/*"
 $TELL_MINECRAFT 'save-on'
 $TELL_MINECRAFT 'say Backup complete!'
